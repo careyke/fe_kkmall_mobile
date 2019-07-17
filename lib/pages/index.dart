@@ -4,6 +4,7 @@ import './category_page.dart';
 import './home_page.dart';
 import './membership.dart';
 import './shopping_cart_page.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class IndexPage extends StatefulWidget {
   IndexPage({Key key}) : super(key: key);
@@ -47,8 +48,15 @@ class IndexPageState extends State<IndexPage> {
 
   @override
   Widget build(BuildContext context) {
+    //假设设计稿是以iphone6为原型
+    ScreenUtil.instance = ScreenUtil(
+      width: 750,
+      height: 1334,
+      allowFontScaling: true
+    )..init(context);
     return Scaffold(
       backgroundColor: Colors.grey[200],
+      // appBar: AppBar(),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: bottomNavigationItems,
