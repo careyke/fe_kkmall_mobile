@@ -4,21 +4,27 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class _BaseCarouselSidget extends StatelessWidget {
-  _BaseCarouselSidget({Key key, @required this.carouselList}) : super(key: key);
+  _BaseCarouselSidget({Key key, @required this.carouselList,this.backgroundColor}) : super(key: key);
   final List<Carousel> carouselList;
+  final Color backgroundColor;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: backgroundColor,
+      padding: EdgeInsets.symmetric(vertical: 5.0),
       height: ScreenUtil.getInstance().setHeight(350),
       child: Swiper(
           itemCount: carouselList.length,
           autoplay: true,
-          viewportFraction:0.8,
-          autoplayDelay:5000,
+          viewportFraction:0.85,
           scale:0.9,
+          autoplayDelay:5000,
           pagination: SwiperPagination(
-            margin: EdgeInsets.all(5.0)
+            margin: EdgeInsets.all(5.0),
+            builder: DotSwiperPaginationBuilder(
+              color: Colors.grey
+            )
           ),
           itemBuilder: (BuildContext context, int index) {
             return Image.network(
@@ -38,9 +44,10 @@ const defaultCarouselData = {
 };
 
 class CarouselWidget extends StatelessWidget {
-  CarouselWidget({Key key, this.future, this.initData}) : super(key: key);
+  CarouselWidget({Key key, this.future, this.initData, this.backgroundColor}) : super(key: key);
   final Future future;
   final List initData;
+  final Color backgroundColor;
 
   List<Carousel> getDefaultData(){
     List<Carousel> carousel = List<Carousel>();
@@ -56,6 +63,7 @@ class CarouselWidget extends StatelessWidget {
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           return _BaseCarouselSidget(
             carouselList: snapshot.data,
+            backgroundColor: backgroundColor
           );
         });
   }

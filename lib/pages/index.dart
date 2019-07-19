@@ -5,6 +5,7 @@ import './home_page.dart';
 import './membership.dart';
 import './shopping_cart_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fe_kkmall_mobile/iconfonts.dart';
 
 class IndexPage extends StatefulWidget {
   IndexPage({Key key}) : super(key: key);
@@ -21,26 +22,16 @@ class IndexPageState extends State<IndexPage> {
     ShoppingCart(),
     Membership()
   ];
-  final List<BottomNavigationBarItem> bottomNavigationItems=[
+  final List<BottomNavigationBarItem> bottomNavigationItems = [
+    BottomNavigationBarItem(icon: Icon(Iconfonts.home), title: Text('首页')),
+    BottomNavigationBarItem(icon: Icon(Iconfonts.search), title: Text('分类')),
     BottomNavigationBarItem(
-      icon: Icon(Icons.home),
-      title: Text('首页')
-    ),
+        icon: Icon(Iconfonts.cert), title: Text('购物车')),
     BottomNavigationBarItem(
-      icon: Icon(Icons.search),
-      title: Text('分类')
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.shopping_cart),
-      title: Text('购物车')
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.account_circle),
-      title: Text('个人中心')
-    )
+        icon: Icon(Iconfonts.account), title: Text('个人中心'))
   ];
 
-  void _switchTab(index){
+  void _switchTab(index) {
     setState(() {
       activePageIndex = index;
     });
@@ -48,20 +39,20 @@ class IndexPageState extends State<IndexPage> {
 
   @override
   Widget build(BuildContext context) {
-    //假设设计稿是以iphone6为原型
-    ScreenUtil.instance = ScreenUtil(
-      width: 750,
-      height: 1334,
-      allowFontScaling: true
-    )..init(context);
+    //假设设计稿是以iphone6为原型,尺寸是dpi
+    ScreenUtil.instance =
+        ScreenUtil(width: 750, height: 1334, allowFontScaling: true)
+          ..init(context);
     return Scaffold(
-      backgroundColor: Colors.grey[200],
       // appBar: AppBar(),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: bottomNavigationItems,
         currentIndex: activePageIndex,
         onTap: _switchTab,
+        unselectedFontSize: 9.0,
+        selectedFontSize: 10.0,
+        iconSize: 18.0,
       ),
       body: tabPages[activePageIndex],
     );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../services/methods.dart';
 import 'package:fe_kkmall_mobile/widgets/carousel_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fe_kkmall_mobile/widgets/category_widget.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key key}) : super(key: key);
@@ -14,8 +15,10 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             CarouselWidget(
+              backgroundColor: Color(0xffffcad4),
               future: getHomePageCarousel(),
             ),
+            CategoryWidget()
           ],
         ),
       ),
