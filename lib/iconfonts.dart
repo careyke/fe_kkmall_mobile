@@ -24,4 +24,19 @@ class Iconfonts{
     fontFamily: 'iconfont',
     matchTextDirection: true
   );
+  static const IconData check = const IconData(
+    0xe60c,
+    fontFamily: 'iconfont',
+    matchTextDirection: true
+  );
+  static const IconData arrowup = const IconData(
+    0xe655,
+    fontFamily: 'iconfont',
+    matchTextDirection: true
+  );
+  static const IconData arrowdown = const IconData(
+    0xe652,
+    fontFamily: 'iconfont',
+    matchTextDirection: true
+  );
 }
